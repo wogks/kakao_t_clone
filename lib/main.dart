@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -59,7 +60,7 @@ class Page1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: <Widget>[
         _top(),
         _mid(),
         _bot()
@@ -70,10 +71,95 @@ class Page1 extends StatelessWidget {
 }
 
 Widget _top(){
-  return Text('top');
-}
+  return GestureDetector(
+    onTap: (){
+      print('click');
+    },
+    child: Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Column(
+              children: [
+                IconButton(onPressed: (){print('click');}, icon: Icon(Icons.local_taxi,size: 40,)),
+                Text('바이크',textAlign: TextAlign.center,)
+              ],
+            ),
+            Column(
+              children: [
+                IconButton(onPressed: (){}, icon: Icon(Icons.local_taxi,size: 40,)),
+                Text('택시')
+              ],
+            ),
+            Column(
+              children: [
+                IconButton(onPressed: (){}, icon: Icon(Icons.local_taxi,size: 40,)),
+                Text('택시')
+              ],
+            ),
+            Column(
+              children: [
+                IconButton(onPressed: (){}, icon: Icon(Icons.local_taxi,size: 40,)),
+                Text('택시')
+              ],
+            )
+          ],
+        ),
+        SizedBox(height: 20,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Column(
+              children: [
+                IconButton(onPressed: (){}, icon: Icon(Icons.local_taxi,size: 40,)),
+                Text('택시')
+              ],
+            ),
+            Column(
+              children: [
+                IconButton(onPressed: (){}, icon: Icon(Icons.local_taxi,size: 40,)),
+                Text('택시',)
+              ],
+            ),
+            Column(
+              children: [
+                IconButton(onPressed: (){}, icon: Icon(Icons.local_taxi,size: 40,)),
+                Text('택시')
+              ],
+            ),
+            Column(
+              children: [
+                IconButton(onPressed: (){}, icon: Icon(Icons.local_taxi,size: 40,)),
+                Text('택시')
+              ],
+            )
+          ],
+        ),
+      ],
+    ),
+  );
+  }
+
 Widget _mid(){
-  return Text('mid');
+  return CarouselSlider(
+        options: CarouselOptions(
+          height: 400
+        ),
+        items: [1,2,3,4,5].map((i){
+          return Builder(
+            builder:(BuildContext context) {
+              return Container(
+                width: MediaQuery.of(context).size.width,
+                margin:EdgeInsets.symmetric(horizontal: 5.0),
+                decoration: BoxDecoration(color: Colors.amber),
+                child: Text('text $i',style: TextStyle(fontSize: 16),),
+              );
+          
+            });
+            
+        }).toList(),
+      );
 }
 Widget _bot(){
   return Text('bot');
