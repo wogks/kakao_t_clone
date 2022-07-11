@@ -171,7 +171,17 @@ Widget _mid(){
       );
 }
 Widget _bot(){
-  return Text('bot');
+  final items = List.generate(10,(i){
+    return ListTile(
+      leading: Icon(Icons.notifications_none),
+      title: Text('[이벤트] 공지사항'),
+    );
+  });
+  return ListView(
+    physics: NeverScrollableScrollPhysics(),
+    shrinkWrap: true,
+    children: items,
+  );
 }
 
 class Page2 extends StatelessWidget {
