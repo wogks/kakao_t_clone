@@ -1,6 +1,12 @@
+
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+final dummyItems = [
+  'https://cdn.class101.net/images/146ca084-e65b-4bfa-93d7-80db2ed65b90',
+  'https://www.walkerhillstory.com/wp-content/uploads/2020/09/2-1.jpg',
+  'https://src.hidoc.co.kr/image/lib/2021/4/28/1619598179113_0.jpg'
+];
 void main() {
   runApp(const MyApp());
 }
@@ -59,7 +65,7 @@ class Page1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: <Widget>[
         _top(),
         _mid(),
@@ -144,20 +150,23 @@ Widget _top(){
 Widget _mid(){
   return CarouselSlider(
         options: CarouselOptions(
-          height: 400
+          height: 150,
+          autoPlay: true,
+          autoPlayInterval: Duration(seconds: 3)
         ),
-        items: [1,2,3,4,5].map((i){
+        items: dummyItems.map((url){
           return Builder(
             builder:(BuildContext context) {
               return Container(
                 width: MediaQuery.of(context).size.width,
                 margin:EdgeInsets.symmetric(horizontal: 5.0),
-                decoration: BoxDecoration(color: Colors.amber),
-                child: Text('text $i',style: TextStyle(fontSize: 16),),
+                
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(13),
+                  child: Image.network(url,fit:BoxFit.cover)),
               );
-          
-            });
-            
+            }
+            );            
         }).toList(),
       );
 }
